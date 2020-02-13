@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const passportJWT = require('./config/passport-jwt-strategy');
 const Mongostore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
@@ -24,7 +25,7 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(expressLayouts);
 app.use(express.static('./assets'));
-
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
